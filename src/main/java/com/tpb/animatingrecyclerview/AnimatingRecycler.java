@@ -67,8 +67,11 @@ public class AnimatingRecycler extends RecyclerView {
         if(mShouldAnimate) {
             for(int i = 0; i < getChildCount(); i++) {
                 switch(anim) {
-                    case HORIZONTAL:
-                        animateHorizontal(getChildAt(i), i);
+                    case HORIZONTAL_LEFT:
+                        animateHorizontalLeft(getChildAt(i), i);
+                        break;
+                    case HORIZONTAL_RIGHT:
+                        animateHorizontalRight(getChildAt(i), i);
                         break;
                     case VERTICAL:
                         animateVertical(getChildAt(i), i);
@@ -89,9 +92,15 @@ public class AnimatingRecycler extends RecyclerView {
         mShouldAnimate = false;
     }
 
-    private void animateHorizontal(View view, final int pos) {
+    private void animateHorizontalLeft(View view, final int pos) {
         view.animate().cancel();
         view.setTranslationX(view.getWidth());
+        view.animate().translationX(0).setDuration(300).setStartDelay(pos * 70);
+    }
+
+    private void animateHorizontalRight(View view, final int pos) {
+        view.animate().cancel();
+        view.setTranslationX(-view.getWidth());
         view.animate().translationX(0).setDuration(300).setStartDelay(pos * 70);
     }
 
@@ -110,7 +119,7 @@ public class AnimatingRecycler extends RecyclerView {
 
     public enum AnimationType {
 
-        HORIZONTAL, VERTICAL, ALPHA
+        HORIZONTAL_LEFT, HORIZONTAL_RIGHT, VERTICAL, ALPHA
 
     }
 

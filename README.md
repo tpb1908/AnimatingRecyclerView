@@ -18,7 +18,7 @@ Vertical- ViewHolders move vertically as they enter
 
 ## TODO
 
-Add an option for the direction of horizontal animation
+~~Add an option for the direction of horizontal animation~~
 
 Add an option to enter all views at the same time
 
