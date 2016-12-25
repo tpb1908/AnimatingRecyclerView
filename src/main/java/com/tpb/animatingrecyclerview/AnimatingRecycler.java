@@ -14,6 +14,7 @@ public class AnimatingRecycler extends RecyclerView {
     private boolean mIsScrollable;
     private boolean mShouldAnimate = true;
     private AnimationType anim = AnimationType.ALPHA;
+    private int duration = 300;
 
     public AnimatingRecycler(Context context) {
         this(context, null);
@@ -43,6 +44,18 @@ public class AnimatingRecycler extends RecyclerView {
 
     public void setAnimationType(AnimationType anim) {
         this.anim = anim;
+    }
+    
+    public void setAnimationDuration(int duration) {
+        if(duration >= 0) {
+            this.duration = duration;
+        } else {
+            throw new IllegalArgumentException("Duration must be positive. You passed " + duration);
+        }
+    }
+
+    public int getDuration() {
+        return duration;
     }
 
     public AnimationType getAnimationType() {
@@ -95,26 +108,26 @@ public class AnimatingRecycler extends RecyclerView {
     private void animateHorizontalLeft(View view, final int pos) {
         view.animate().cancel();
         view.setTranslationX(view.getWidth());
-        view.animate().translationX(0).setDuration(300).setStartDelay(pos * 70);
+        view.animate().translationX(0).setDuration(duration).setStartDelay(pos * 70);
     }
 
     private void animateHorizontalRight(View view, final int pos) {
         view.animate().cancel();
         view.setTranslationX(-view.getWidth());
-        view.animate().translationX(0).setDuration(300).setStartDelay(pos * 70);
+        view.animate().translationX(0).setDuration(duration).setStartDelay(pos * 70);
     }
 
     private void animateVertical(View view, final int pos) {
         view.animate().cancel();
         view.setTranslationY(100);
         view.setAlpha(0);
-        view.animate().alpha(1.0f).translationY(0).setDuration(300).setStartDelay(pos * 70);
+        view.animate().alpha(1.0f).translationY(0).setDuration(duration).setStartDelay(pos * 70);
     }
 
     private void animateAlpha(View view, final int pos) {
         view.animate().cancel();
         view.setAlpha(0.0f);
-        view.animate().alpha(1.0f).setDuration(300).setStartDelay(pos * 70);
+        view.animate().alpha(1.0f).setDuration(duration).setStartDelay(pos * 70);
     }
 
     public enum AnimationType {

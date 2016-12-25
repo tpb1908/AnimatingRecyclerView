@@ -18,12 +18,14 @@ Vertical- ViewHolders move vertically as they enter
 
 ## TODO
 
+Allow setting config via xml
+
 ~~Add an option for the direction of horizontal animation~~
 
 Add an option to enter all views at the same time
 
 Add an expand animation (Horizontal/Vertical)
 
-Add an option to change the timescale
+~~Add an option to change the timescale~~
 
 Add an option to change the direction of animation traversal
